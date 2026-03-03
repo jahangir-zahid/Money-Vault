@@ -1,4 +1,4 @@
-DuoMoneyVault is a simple and secure money collection web application designed for Father.
+Money-Vault is a simple and secure money collection web application designed for Father.
 It helps track, manage, and record collected money in a clean and calm user interface.
 
 This project is built using HTML, CSS, and JavaScript with smooth animations and an attractive modern design.
