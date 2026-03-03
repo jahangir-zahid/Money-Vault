@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Collector</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen">
+        <div class="card glass">
+            <h2>Login</h2>
+            <input type="password" id="password-input" placeholder="Enter password">
+            <button id="login-btn">Submit</button>
+            <p id="login-error" class="error"></p>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboard" class="screen hidden">
+        <!-- edit modal -->
+        <div id="edit-modal" class="modal hidden">
+            <div class="card glass">
+                <h2>Edit Record</h2>
+                <select id="edit-type">
+                    <option value="collect">Collect</option>
+                    <option value="pay">Pay</option>
+                </select>
+                <input type="text" id="edit-name" placeholder="Name">
+                <input type="number" id="edit-amount" placeholder="Amount">
+                <input type="date" id="edit-date">
+                <div class="modal-controls">
+                    <button id="save-edit-btn">Save</button>
+                    <button id="cancel-edit-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <header>
+            <h1>Money Collector</h1>
+        </header>
+
+        <main>
+            <section class="form-section glass">
+                <select id="type">
+                    <option value="collect" selected>Collect</option>
+                    <option value="pay">Pay</option>
+                </select>
+                <input type="text" id="name" placeholder="Name">
+                <input type="number" id="amount" placeholder="Amount">
+                <input type="date" id="date">
+                <button id="add-btn">Submit</button>
+            </section>
+
+            <section class="table-section glass">
+                <table id="records-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- rows inserted via JS -->
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="controls-section">
+                <button id="export-btn">Export CSV</button>
+                <button id="clear-btn">Clear All</button>
+            </section>
+
+            <section class="total-section glass">
+                <h2>Total Collected: ₹<span id="total-collected">0</span></h2>
+                <h2>Total Paid: ₹<span id="total-paid">0</span></h2>
+                <h2>Net: ₹<span id="total-net">0</span></h2>
+            </section>
+        </main>
+
+        <footer>
+            <p>Developed by "Jahangir Ali"</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

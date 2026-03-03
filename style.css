@@ -1,0 +1,167 @@
+/* Global resets and font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    background: linear-gradient(135deg, #e0ecff, #cfdef3);
+    overflow-x: hidden;
+    animation: bgAnim 10s ease-in-out infinite alternate;
+}
+
+@keyframes bgAnim {
+    0% {background-position: 0% 50%;}
+    100% {background-position: 100% 50%;}
+}
+
+/* screens */
+.screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+}
+.hidden { opacity: 0; pointer-events: none; }
+
+/* glass card style */
+.card, .glass {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    transition: transform 0.3s ease;
+}
+.card:hover, .glass:hover {
+    transform: translateY(-5px);
+}
+
+/* login */
+#login-screen .card {
+    width: 300px;
+    text-align: center;
+}
+#login-screen input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+}
+#login-screen button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #4a90e2;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+#login-screen button:hover {background: #3a78c2;}
+.error {color: #e74c3c; animation: shake 0.3s;}
+@keyframes shake {
+    0%, 100% {transform: translateX(0);} 20%,80% {transform: translateX(-5px);} 40%,60% {transform: translateX(5px);}    
+}
+
+/* dashboard layout */
+header {text-align: center; margin-bottom: 20px;}
+header h1 {font-weight: 500; color: #333; animation: fadeIn 1s ease;}
+
+main {max-width: 900px; margin: 0 auto; padding: 20px; text-align: center;}
+.form-section {display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center;}
+.form-section select, .form-section input, .form-section button {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+}
+.form-section select {background: rgba(255,255,255,0.6);}
+.form-section input {flex: 1 1 150px;}
+.form-section button {
+    background: #4a90e2;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.form-section button:hover {background: #3a78c2;}
+
+.table-section {overflow-x:auto; margin-top: 20px;}
+table {width: 100%; border-collapse: collapse; animation: fadeIn 0.8s ease;}
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+th {background: rgba(74,144,226,0.2);}
+tr:nth-child(even) {background: rgba(255,255,255,0.3);}
+tr {transform: translateX(-20px); opacity: 0; animation: rowEnter 0.5s forwards;}
+@keyframes rowEnter {
+    to {transform: translateX(0); opacity: 1;}
+}
+
+.controls-section {margin:20px 0; display: flex; gap: 10px; justify-content: center;}
+.controls-section button {padding:10px 15px; border:none; border-radius:6px; background:#4a90e2; color:white; cursor:pointer; transition:background 0.3s;}
+.controls-section button:hover {background:#3a78c2;}
+
+.total-section {text-align:center; margin-top:20px; animation: fadeIn 1s ease;}
+
+footer {position:fixed; bottom:10px; width:100%; text-align:center; color:#555; animation: fadeIn 1.5s ease;}
+
+/* modal overlay */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    transition: opacity 0.3s;
+    z-index: 1000; /* ensure modal sits above other content */
+    pointer-events: auto; /* allow interaction with inputs/buttons */
+}
+.modal.hidden {opacity:0; pointer-events:none;}
+
+/* blur background when modal active */
+.blur-background {
+    filter: blur(4px);
+}
+
+.modal-controls {display:flex; gap:10px; justify-content:center; margin-top:10px;}
+.modal-controls button {padding:8px 14px; border:none; border-radius:6px; cursor:pointer; background:#4a90e2; color:#fff; transition:background 0.3s;}
+.modal-controls button:hover {background:#3a78c2;}
+
+@keyframes fadeIn { from {opacity:0;} to{opacity:1;} }
+
+/* responsive */
+@media (max-width: 600px) {
+    .form-section {flex-direction: column; align-items: stretch;}
+    .controls-section {flex-direction: column;}
+    /* smaller fonts and padding for mobile */
+    body {font-size: 14px;}
+    header h1 {font-size: 1.5rem;}
+    .form-section input, .form-section button {font-size: 1rem;}
+    /* responsive table: convert rows to cards */
+    table, thead, tbody, th, td, tr {display: block;}
+    thead tr {position: absolute; top: -9999px; left: -9999px;}
+    tr {border: 1px solid rgba(0,0,0,0.1); margin-bottom: 10px;}
+    td {border: none; position: relative; padding-left: 50%;}
+    td:before {
+        position: absolute;
+        top: 12px;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: 600;
+    }
+    td:nth-of-type(1):before {content: "Name";}
+    td:nth-of-type(2):before {content: "Amount";}
+    td:nth-of-type(3):before {content: "Date";}
+    td:nth-of-type(4):before {content: "Actions";}
+}
